@@ -1,7 +1,7 @@
 angular
     .module("app", [
     //
-    "ng-route",
+    "ngRoute",
     //
     "firebase"
 ]);
