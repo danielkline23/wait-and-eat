@@ -1,5 +1,5 @@
 <!doctype html>
-<html ng-app="app">
+<html lang="en" ng-app="app">
     <head>
         <meta lang="en" charset="utf-8">
         <title>Wait and Eat</title>
@@ -11,6 +11,10 @@
 
     <body>
         This is the body
+        
+        <!--Main content that changes based on route-->
+        <ng-view></ng-view>
+        
         <!--Third-party JS-->
             <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -28,6 +32,8 @@
         <!--Main app module-->
         <script src="app/app.module.js"></script>
         
-
+        <!--landing module-->
+        <script src="app/landing/landing.module.js"></script>
+        <srcipt src="app/landing/config.route.js"></srcipt>
     </body>
 </html>
