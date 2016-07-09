@@ -1,0 +1,33 @@
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>Seated?</th>
+            <th>Info</th>
+            <th>Notified?</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    
+    <tbody>
+        <tr ng-repeat="party in vm.parties">
+            <td>
+                <!-- <td> {{ party.seated }} </td> -->
+                <input ng-model="party.seated" ng-change="vm.toggleSeated(party)" type="checkbox">
+            </td>
+            
+            <td>
+                <div style="font-weight: bold"> {{ party.name }} ({{ party.size }} people) </div>
+                <div> {{ party.phone }} </div>
+            </td>
+            
+            <td>
+                <div> {{ party.smsNotified ? "Yes" : "No"}} </div>
+            </td>
+            
+            <td>
+                <button ng-click="vm.sendSMS(party)" class="btn btn-success">Send SMS</button>
+                <button ng-click="vm.removeParty(party)" class="btn btn-danger">Remove</button>
+            </td>
+        </tr>
+    </tbody>
+</table>

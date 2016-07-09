@@ -1,39 +1,64 @@
-<!doctype html>
-<html lang="en" ng-app="app">
+<!DOCTYPE html>
+<html ng-app="app_ver2">
     <head>
-        <meta lang="en" charset="utf-8">
-        <title>Wait and Eat</title>
+        <meta charset="utf-8">
+        <title>Wait and Eat (ver2)</title>
+        
         <!--Bootstrap latest compiled and minified CSS-->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
         <!--Optional theme-->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+        <!--Custom CSS-->
+        <link rel="stylesheet" href="content/css/app_ver2.css">
     </head>
 
     <body>
-        This is the body
         
-        <!--Main content that changes based on route-->
-        <ng-view></ng-view>
+        <!--navbar directive that stays on top of every page-->
+        <we-navbar></we-navbar>
+        
+        <!--Content that changes based on route-->
+        <div ng-view class="container"></div>
         
         <!--Third-party JS-->
-            <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-            <!-- Latest compiled and minified JavaScript -->
-            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-            <!-- AngularJS -->
-            <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js"></script>
-            <!--Handling different pages in the application-->
-            <script src="https://code.angularjs.org/1.4.4/angular-route.js"></script>
-            <!-- Firebase -->
-            <script src="https://cdn.firebase.com/js/client/2.2.4/firebase.js"></script>
-            <!-- AngularFire -->
-            <script src="https://cdn.firebase.com/libs/angularfire/1.2.0/angularfire.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js"></script>
+        <script src="https://code.angularjs.org/1.4.4/angular-route.js"></script>
+        <script src="https://cdn.firebase.com/js/client/2.2.4/firebase.js"></script>
+        <script src="https://cdn.firebase.com/libs/angularfire/1.1.3/angularfire.min.js"></script>
         
-        <!--Main app module-->
-        <script src="app/app.module.js"></script>
+        <!--Main app modules-->
+        <script src="app/app_ver2.module.js"></script>
+        
+        <!--core module-->
+        <script src="app/core/core.module.js"></script>
+        <script src="app/core/constants.js"></script>
+        <script src="app/core/firebaseData.service.js"></script>
+        <script src="app/core/party.service.js"></script>
+        <script src="app/core/sms.service.js"></script>
+        
+        <!--auth module-->
+        <script src="app/auth/auth.module.js"></script>
+        <script src="app/auth/authConfig.route.js"></script>
+        <script src="app/auth/auth.controller.js"></script>
+        <script src="app/auth/auth.service.js"></script>
+        <script src="app/auth/authForm.directive.js"></script>
         
         <!--landing module-->
         <script src="app/landing/landing.module.js"></script>
-        <script src="app/landing/config.route.js"></script>
+        <script src="app/landing/landingConfig.route.js"></script>
+        
+        <!--navbar module-->
+        <script src="app/layout/layout.module.js"></script>
+        <script src="app/layout/navbar.directive.js"></script>
+        
+        <!--waitList module-->
+        <script src="app/waitList/waitList.module.js"></script>
+        <script src="app/waitList/waitListConfig.route.js"></script>
+        <script src="app/waitList/waitList.controller.js"></script>
+        <script src="app/waitList/directives/partyForm.directive.js"></script>
+        <script src="app/waitList/directives/partyTable.directive.js"></script>
+        
     </body>
 </html>

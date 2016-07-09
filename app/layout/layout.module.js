@@ -2,6 +2,6 @@
     "use strict";
     
     angular
-        .module("app_ver2.landing", []);
+        .module("app_ver2.layout", []);
     
 })();
