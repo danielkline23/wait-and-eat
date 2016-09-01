@@ -5,34 +5,24 @@
     .module("app.waitlist")
     .controller("WaitlistController", WaitlistController);
   
-  WaitlistController.$inject = ["$firebaseArray"];
+  WaitlistController.$inject = ["$firebaseArray", "groupService"];
   
-  function WaitlistController($firebaseArray) {
+  function WaitlistController(groupService) {
     
     var vm = this;
     
-    var fireGroups = firebase.database().ref("groups");
     var fireSMSs = firebase.database().ref("SMSs");
     
-    vm.newGroup = new Group();
-    vm.groups = $firebaseArray(fireGroups);
+    vm.newGroup = new groupService.Group();
+    vm.groups = groupService.groups;
     vm.addGroup = addGroup;
     vm.deleteGroup = deleteGroup;
     vm.sendSMS = sendSMS;
     vm.toggleSeated = toggleSeated;
     
-    
-    function Group(name, phone, size) {
-      this.name = "";
-      this.phone = "";
-      this.size = "";
-      this.seated = false;
-      this.notified = false;
-    }
-    
     function addGroup() {
       vm.groups.$add(vm.newGroup);
-      vm.newGroup = new Group();
+      vm.newGroup = new groupService.Group();
     }
     
     function deleteGroup(group) {

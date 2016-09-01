@@ -10,6 +10,8 @@
     "firebase",
     
     //Custom modules
+    "app.core",
+    "app.auth",
     "app.landing",
     "app.waitlist"
   ]);
