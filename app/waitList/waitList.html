@@ -1,5 +1,44 @@
-<!--form for adding new parties-->
-<we-party-form parties="vm.parties"></we-party-form>
+<form ng-submit="vm.addGroup()" class="form-inline group-form">
+  <div class="form-group">
+    <input ng-model="vm.newGroup.name" type="text" class="form-control" label="Name" placeholder="John Doe" required>
+  </div>
+  <div class="form-group">
+    <input ng-model="vm.newGroup.phone" type="text" class="form-control" label="Phone number" placeholder="+15559873210" required>
+  </div>
+  <div class="form-group">
+    <input ng-model="vm.newGroup.size" type="number" class="form-control" label="Group size" placeholder="2" required>
+  </div>
+  <button type="submit" class="btn btn-primary">Add group</button>
+</form>
 
-<!--table that displayes parties-->
-<we-party-table parties="vm.parties"></we-party-table>
+<table class="table table-stripped table-bordered">
+  <thead>
+    <tr>
+      <th>Seated?</th>
+      <th>Info</th>
+      <th>Notified?</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="group in vm.groups">
+      <td>
+        <input ng-model="group.seated" ng-change="vm.toggleSeated(group)" type="checkbox">
+      </td>
+      
+      <td>
+        <div>{{ group.name }} <strong>{{ group.size }}</strong> people</div>
+        <div> {{ group.phone }} </div>
+      </td>
+      
+      <td>
+        <div> {{ group.notified ? "Yes" : "No" }} </div>
+      </td>
+      
+      <td>
+        <button type="button" ng-click="vm.sendSMS(group)" class="btn btn-success">Send SMS</button>
+        <button type="button" ng-click="vm.deleteGroup(group)" class="btn btn-danger">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

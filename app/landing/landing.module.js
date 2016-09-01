@@ -1,7 +1,6 @@
 (function() {
-    "use strict";
-    
-    angular
-        .module("app_ver2.landing", []);
-    
+  "use strict";
+  
+  angular
+    .module("app.landing", []);
 })();
