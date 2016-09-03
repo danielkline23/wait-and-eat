@@ -3,9 +3,9 @@
   
   angular
     .module("app.layout")
-    .directive("weNavbar", weNavbar);
+    .directive("wneNavbar", wneNavbar);
   
-  function weNavbar() {
+  function wneNavbar() {
     return {
       templateUrl: "app/layout/navbar.html",
       restrict: "E",

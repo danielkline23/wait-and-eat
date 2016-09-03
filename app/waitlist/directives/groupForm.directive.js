@@ -3,21 +3,34 @@
   
   angular
     .module("app.waitlist")
-    .directive("weGroupForm", weGroupForm);
+    .directive("wneGroupForm", wneGroupForm);
   
-  function weGroupForm() {
+  function wneGroupForm() {
     return {
       templateUrl: "app/waitlist/directives/groupForm.html",
       restrict: "E",
       controller: GroupFormController,
       controllerAs: "vm",
-      scope: {}
+      bindToController: true,
+      scope: {
+        groups: "="
+      }
     };
     
-    GroupFormController.$inject = ["partyService"];
+    GroupFormController.$inject = ["groupService"];
     
-    function GroupFormController(partyService) {
+    function GroupFormController(groupService) {
+      var vm = this;
       
+      vm.newGroup = new groupService.Group();
+      vm.addGroup = addGroup;
+      
+      ////////////////////
+      
+      function addGroup() {
+        vm.groups.$add(vm.newGroup);
+        vm.newGroup = new groupService.Group();
+      }
     }
   }
 })();

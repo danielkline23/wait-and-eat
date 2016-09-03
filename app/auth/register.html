@@ -1,12 +1,5 @@
-<form ng-submit="vm.register(vm.restaurant)" class="form-signin">
-  <h2 class="form-signin-heading">Sign up</h2>
-  <label class="form-label">
-    Email address
-    <input ng-model="vm.restaurant.email" type="email" class="form-control" placeholder="name@domain.com" required autofocus>
-  </label>
-  <label class="form-label">
-    Password
-    <input ng-model="vm.restaurant.password" type="password" class="form-control" placeholder="************" required>
-  </label>
-  <button type="submit" class="btn btn-lg btn-primary btn-block">Sign up</button>
-</form>
+<wne-auth-form
+             error="vm.error"
+             form-title="Sign up"
+             submit-action="vm.register(restaurant)">
+</wne-auth-form>
