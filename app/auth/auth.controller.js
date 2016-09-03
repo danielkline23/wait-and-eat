@@ -5,11 +5,10 @@
     .module("app.auth")
     .controller("AuthController", AuthController);
   
-  AuthController.$inject = ["$location", "$firebaseAuth"];
+  AuthController.$inject = ["$location", "authService"];
   
-  function AuthController($location, $firebaseAuth) {
+  function AuthController($location, authService) {
     var vm = this;
-    var firebaseAuthObject = $firebaseAuth();
     
     vm.restaurant = {
       email: "",
@@ -17,20 +16,22 @@
     };
     vm.register = register;
     vm.login = login;
-    vm.logout = logout;
     
     function register(restaurant) {
-      return firebaseAuthObject.$createUserWithEmailAndPassword(restaurant.email, restaurant.password)
+      return authService.register(restaurant)
         .then(function() {
           vm.login(restaurant);
         })
+      .then(function() {
+        return authService.sendWelcomeEmail(restaurant.email);
+      })
         .catch(function(error) {
           console.log(error);
         });
     }
     
     function login(restaurant) {
-      return firebaseAuthObject.$signInWithEmailAndPassword(restaurant.email, restaurant.password)
+      return authService.login(restaurant)
         .then(function(restaurant) {
           console.log(restaurant);
         $location.path("/waitlist");
@@ -39,12 +40,6 @@
           console.log(error);
         });
     }
-    
-    function logout() {
-      firebaseAuthObject.$signOut();
-      $location.path("/");
-    }
-    
     
   }
   

@@ -5,16 +5,14 @@
     .module("app.waitlist")
     .controller("WaitlistController", WaitlistController);
   
-  WaitlistController.$inject = ["$firebaseArray", "groupService"];
+  WaitlistController.$inject = ["smsService", "groupService", "restaurant"];
   
-  function WaitlistController(groupService) {
+  function WaitlistController(smsService, groupService, restaurant) {
     
     var vm = this;
     
-    var fireSMSs = firebase.database().ref("SMSs");
-    
     vm.newGroup = new groupService.Group();
-    vm.groups = groupService.groups;
+    vm.groups = groupService.getGroupsByRestaurant(restaurant.uid);
     vm.addGroup = addGroup;
     vm.deleteGroup = deleteGroup;
     vm.sendSMS = sendSMS;
@@ -30,14 +28,7 @@
     }
     
     function sendSMS(group) {
-      var newSMS = {
-        name: group.name,
-        phone: group.phone,
-        size: group.size
-      };
-      fireSMSs.push(newSMS);
-      group.notified = true;
-      vm.groups.$save(group);
+      smsService.sendSMS(group, vm.groups);
     }
       
     function toggleSeated(group) {

@@ -9,9 +9,13 @@
     var root = firebase.database().ref();
 
     var service = {
-      root: root
+      root: root,
+      restaurants: root.child("restaurants"),
+      emails: root.child("emails"),
+      SMSs: root.child("SMSs")
     };
 
     return service;
   }
+  
 })();

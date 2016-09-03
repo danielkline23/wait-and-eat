@@ -1,5 +1,5 @@
 (function() {
-  "use strict"
+  "use strict";
   
   angular
     .module("app.core")
@@ -8,9 +8,12 @@
   groupService.$inject = ["$firebaseArray", "firebaseDataService"];
   
   function groupService($firebaseArray, firebaseDataService) {
+    var groups = null;
+    
     var service = {
       Group: Group,
-      groups: $firebaseArray(firebaseDataService.root.child("groups"))
+      getGroupsByRestaurant: getGroupsByRestaurant,
+      reset: reset
     };
     
     return service;
@@ -24,5 +27,20 @@
       this.seated = false;
       this.notified = false;
     }
+    
+    function getGroupsByRestaurant(uid) {
+      if (!groups) {
+        groups = $firebaseArray(firebaseDataService.restaurants.child(uid).child("groups"));
+        return groups;
+      }
+    }
+    
+    function reset() {
+      if (groups) {
+        groups.$destroy();
+        groups = null;
+      }
+    }
   }
+  
 })();
