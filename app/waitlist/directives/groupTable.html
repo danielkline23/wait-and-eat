@@ -1,0 +1,31 @@
+<table class="table table-stripped table-bordered">
+  <thead>
+    <tr>
+      <th>Seated?</th>
+      <th>Info</th>
+      <th>Notified?</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="group in vm.groups">
+      <td>
+        <input ng-model="group.seated" ng-change="vm.toggleSeated(group)" type="checkbox">
+      </td>
+      
+      <td>
+        <div>{{ group.name }} <strong>{{ group.size }}</strong> people</div>
+        <div> {{ group.phone }} </div>
+      </td>
+      
+      <td>
+        <div> {{ group.notified ? "Yes" : "No" }} </div>
+      </td>
+      
+      <td>
+        <button type="button" ng-click="vm.sendSMS(group)" class="btn btn-success">Send SMS</button>
+        <button type="button" ng-click="vm.deleteGroup(group)" class="btn btn-danger">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

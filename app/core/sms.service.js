@@ -1,34 +1,34 @@
 (function() {
-    "use strict";
+  "use strict";
+  
+  angular
+    .module("app.core")
+    .factory("smsService", smsService);
+  
+  smsService.$inject = ["firebaseDataService"];
+
+  function smsService(firebaseDataService) {
+    var service = {
+      sendSMS: sendSMS
+    };
     
-    angular
-        .module("app_ver2.core")
-        .factory("smsService", smsService);
+    return service;
     
-    smsService.$inject = ["firebaseDataService"];
     
-    function smsService(firebaseDataService) {
-        
-        var service = {
-            sendSMS: sendSMS
-        };
-        
-        return service;
-        
-        ///////////////
-        
-        function sendSMS(party, parties) {
-            var newSMS = {
-                name: party.name,
-                phoneNumber: party.phone,
-                size: party.size
-            };
-            
-            firebaseDataService.SMSs.push(newSMS);
-            party.smsNotified = true;
-            parties.$save(party);
-        }
-        
+    /////////////////
+  
+    
+    function sendSMS(group, groups) {
+      var newSMS = {
+        name: group.name,
+        phone: group.phone,
+        size: group.size
+      };
+      firebaseDataService.SMSs.push(newSMS);
+      group.notified = true;
+      groups.$save(group);
     }
     
+  }
+
 })();

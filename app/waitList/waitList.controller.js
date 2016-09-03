@@ -1,15 +1,15 @@
 (function() {
-    "use strict"
-    
-    angular
-        .module("app_ver2.waitList")
-        .controller("WaitListController", WaitListController);
-    
-    WaitListController.$inject = ["partyService", "restaurant"];
-    
-    function WaitListController(partyService, restaurant) {
-        var vm = this;
-        vm.parties = partyService.getPartiesByRestaurant(restaurant.uid);
-    }
-    
+  "use strict";
+  
+  angular
+    .module("app.waitlist")
+    .controller("WaitlistController", WaitlistController);
+  
+  WaitlistController.$inject = ["groupService", "restaurant"];
+  
+  function WaitlistController(groupService, restaurant) {
+    var vm = this;
+    vm.groups = groupService.getGroupsByRestaurant(restaurant.uid);
+  }
+  
 })();

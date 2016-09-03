@@ -1,7 +1,7 @@
 (function() {
-    "use strict";
-    
-    angular
-        .module("app_ver2.layout", []);
-    
+  "use strict";
+  
+  angular
+    .module("app.layout", []);
+  
 })();
